@@ -66,7 +66,8 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
         }
 
         public void set(Shop shop) {
-            binding.shopItemText.setText(shop.getName());
+            binding.shopItemName.setText(shop.getName());
+            binding.shopItemCategoryText.setText(shop.getCategory());
 
             itemView.setOnClickListener(v -> {
                listener.onItemClick(shop);

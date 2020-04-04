@@ -19,12 +19,28 @@ public class Shop {
         this.description = description;
     }
 
-    public List<String> getCategories() {
-        return categories;
+    public double getLat() {
+        return lat;
     }
 
-    public void setCategories(List<String> categories) {
-        this.categories = categories;
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLon() {
+        return lon;
+    }
+
+    public void setLon(double lon) {
+        this.lon = lon;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getPhoneNumber() {
@@ -85,7 +101,9 @@ public class Shop {
 
     private String name;
     private String description;
-    private List<String> categories;
+    private double lat;
+    private double lon;
+    private String category;
     private String phoneNumber;
     private String email;
     private String whatsappNumber;

@@ -18,6 +18,12 @@
         <item name="android:background">@color/primary</item>
     </style>
 
+    <style name="header_text_view" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textSize">@dimen/header_text_size</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
     <style name="primary_text_view" parent="android:Widget.TextView">
         <item name="android:textColor">@color/primary_text</item>
         <item name="android:textSize">@dimen/primary_text_size</item>

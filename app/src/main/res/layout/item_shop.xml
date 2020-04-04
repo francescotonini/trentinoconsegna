@@ -5,15 +5,25 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/spacing_fortyeight">
+        android:layout_height="@dimen/spacing_sixtyfour">
         <TextView
-            android:id="@+id/shop_item_text"
+            android:id="@+id/shop_item_category_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/spacing_twentyfour"
+            android:layout_marginTop="@dimen/spacing_eight"
             android:layout_marginLeft="@dimen/spacing_sixteen"
-            android:layout_marginTop="@dimen/spacing_twelve"
-            android:layout_marginBottom="@dimen/spacing_twelve"
             android:layout_marginRight="@dimen/spacing_sixteen"
+            android:gravity="bottom"
+            android:textAllCaps="true"
+            style="@style/secondary_text_view" />
+
+        <TextView
+            android:id="@+id/shop_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_twentyfour"
+            android:layout_marginLeft="@dimen/spacing_sixteen"
+            android:layout_marginRight="@dimen/spacing_sixteen"
+            android:layout_marginBottom="@dimen/spacing_eight"
             style="@style/primary_text_view" />
     </LinearLayout>
 </layout>

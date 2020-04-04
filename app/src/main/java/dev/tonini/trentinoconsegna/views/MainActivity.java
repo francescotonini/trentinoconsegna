@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,10 +25,11 @@ import dev.tonini.trentinoconsegna.TrentinoConsegnaApp;
 import dev.tonini.trentinoconsegna.adapters.ShopsAdapter;
 import dev.tonini.trentinoconsegna.databinding.ActivityMainBinding;
 import dev.tonini.trentinoconsegna.helpers.SimpleDividerItemDecoration;
+import dev.tonini.trentinoconsegna.models.Category;
 import dev.tonini.trentinoconsegna.models.Shop;
 import dev.tonini.trentinoconsegna.viewmodels.ShopsViewModel;
 
-public class MainActivity extends BaseActivity implements Observer<List<Shop>>, ShopsAdapter.OnItemClickListener {
+public class MainActivity extends BaseActivity implements ShopsAdapter.OnItemClickListener {
     private ActivityMainBinding binding;
     private ShopsViewModel viewModel;
     private ShopsAdapter shopsAdapter;
@@ -60,17 +63,33 @@ public class MainActivity extends BaseActivity implements Observer<List<Shop>>, 
         setSupportActionBar(findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Hamburger icon
+        // Navigation view icon
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, binding.activityMainDrawerLayout, 0, 0);
         actionBarDrawerToggle.syncState();
         binding.activityMainDrawerLayout.addDrawerListener(actionBarDrawerToggle);
 
         // RecyclerView
         shopsAdapter = new ShopsAdapter(this);
-        binding.mainRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(this, getResources().getColor(R.color.divider), 3));
         binding.mainRecyclerView.setAdapter(shopsAdapter);
+        binding.mainRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(
+                this,
+                getResources().getColor(R.color.divider),
+                2));
 
-        getViewModel().getShops().observe(this, this);
+        getViewModel().getShops().observe(this, (shops) -> {
+            shopsAdapter.update(shops);
+        });
+
+        getViewModel().getCategories().observe(this, (categories -> {
+            Menu menu = binding.activityMainNavigationView.getMenu();
+            SubMenu submenu = menu.addSubMenu("Categorie");
+
+            for(Category category: categories) {
+                submenu.add(category.getName());
+            }
+
+            binding.activityMainNavigationView.invalidate();
+        }));
     }
 
     @Override
@@ -98,11 +117,6 @@ public class MainActivity extends BaseActivity implements Observer<List<Shop>>, 
         super.onConfigurationChanged(newConfig);
 
         actionBarDrawerToggle.onConfigurationChanged(newConfig);
-    }
-
-    @Override
-    public void onChanged(List<Shop> shops) {
-        shopsAdapter.update(shops);
     }
 
     @Override

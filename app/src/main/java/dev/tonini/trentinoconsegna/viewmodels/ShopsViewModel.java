@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.util.List;
 
+import dev.tonini.trentinoconsegna.models.Category;
 import dev.tonini.trentinoconsegna.models.Shop;
 import dev.tonini.trentinoconsegna.repositories.ShopsRepository;
 
@@ -25,6 +26,8 @@ public class ShopsViewModel extends BaseViewModel {
         return shopsRepository.getShops();
     }
 
+    public LiveData<List<Category>> getCategories() { return shopsRepository.getCategories(); }
+
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
         private final Application application;
         private final ShopsRepository shopsRepository;
@@ -38,7 +41,5 @@ public class ShopsViewModel extends BaseViewModel {
             //noinspection unchecked
             return (T) new ShopsViewModel(application, shopsRepository);
         }
-
-
     }
 }

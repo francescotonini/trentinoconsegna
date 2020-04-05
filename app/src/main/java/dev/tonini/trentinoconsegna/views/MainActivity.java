@@ -7,10 +7,15 @@ import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -18,7 +23,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.gson.Gson;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import dev.tonini.trentinoconsegna.R;
 import dev.tonini.trentinoconsegna.TrentinoConsegnaApp;
@@ -26,14 +34,17 @@ import dev.tonini.trentinoconsegna.adapters.ShopsAdapter;
 import dev.tonini.trentinoconsegna.databinding.ActivityMainBinding;
 import dev.tonini.trentinoconsegna.helpers.SimpleDividerItemDecoration;
 import dev.tonini.trentinoconsegna.models.Category;
+import dev.tonini.trentinoconsegna.models.City;
 import dev.tonini.trentinoconsegna.models.Shop;
 import dev.tonini.trentinoconsegna.viewmodels.ShopsViewModel;
 
-public class MainActivity extends BaseActivity implements ShopsAdapter.OnItemClickListener {
+public class MainActivity extends BaseActivity implements ShopsAdapter.OnItemClickListener, AdapterView.OnItemSelectedListener {
     private ActivityMainBinding binding;
     private ShopsViewModel viewModel;
     private ShopsAdapter shopsAdapter;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
+    // private ActionBarDrawerToggle actionBarDrawerToggle;
+
+    private int spinnerPreviousId = 0;
 
     @Override
     protected int getLayoutId() {
@@ -61,12 +72,17 @@ public class MainActivity extends BaseActivity implements ShopsAdapter.OnItemCli
 
         // Toolbar id is set on toolbar.xml, hence I can't use binding
         setSupportActionBar(findViewById(R.id.toolbar));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Navigation view icon
+        /*
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, binding.activityMainDrawerLayout, 0, 0);
         actionBarDrawerToggle.syncState();
         binding.activityMainDrawerLayout.addDrawerListener(actionBarDrawerToggle);
+        */
+
+        binding.mainRecyclerViewRefresh.setEnabled(false);
+        binding.mainRecyclerViewRefresh.setRefreshing(true);
 
         // RecyclerView
         shopsAdapter = new ShopsAdapter(this);
@@ -77,9 +93,12 @@ public class MainActivity extends BaseActivity implements ShopsAdapter.OnItemCli
                 2));
 
         getViewModel().getShops().observe(this, (shops) -> {
+            binding.mainRecyclerViewRefresh.setRefreshing(false);
+
             shopsAdapter.update(shops);
         });
 
+        /*
         getViewModel().getCategories().observe(this, (categories -> {
             Menu menu = binding.activityMainNavigationView.getMenu();
             SubMenu submenu = menu.addSubMenu("Categorie");
@@ -90,8 +109,24 @@ public class MainActivity extends BaseActivity implements ShopsAdapter.OnItemCli
 
             binding.activityMainNavigationView.invalidate();
         }));
+        */
+
+        getViewModel().getCities().observe(this, cities -> {
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                R.layout.spinner_item,
+                cities.stream().map(v -> v.getName()).collect(Collectors.toList())
+            );
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            AppCompatSpinner spinner = findViewById(R.id.activity_main_cities);
+            spinner.setOnItemSelectedListener(this);
+            spinner.setAdapter(adapter);
+        });
     }
 
+    /*
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -118,6 +153,7 @@ public class MainActivity extends BaseActivity implements ShopsAdapter.OnItemCli
 
         actionBarDrawerToggle.onConfigurationChanged(newConfig);
     }
+    */
 
     @Override
     public void onItemClick(Shop shop) {
@@ -126,4 +162,20 @@ public class MainActivity extends BaseActivity implements ShopsAdapter.OnItemCli
 
         startActivity(goToShopDetails);
     }
+;
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (position == spinnerPreviousId) {
+            return;
+        }
+
+        spinnerPreviousId = position;
+
+        binding.mainRecyclerViewRefresh.setRefreshing(true);
+
+        getViewModel().filterShopsByCity(getViewModel().getCities().getValue().get(position));
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) { }
 }

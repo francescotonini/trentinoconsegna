@@ -3,11 +3,18 @@ package dev.tonini.trentinoconsegna.api;
 import dev.tonini.trentinoconsegna.api.models.APIResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface ConsegnoInTrentinoAPI {
-    @GET("class%20%3D%20%5Besercizio_commerciale%5D")
-    Call<APIResponse> getShops();
+    @GET("class = [esercizio_commerciale] limit 100 offset {offset}")
+    Call<APIResponse> getShops(@Path("offset") int offset);
 
-    @GET("class%20%3D%20%5Bcategoria_merceologica%5D")
+    @GET("comuni_consegna.id = [ {id} ] limit 30")
+    Call<APIResponse> getShopsByCity(@Path("id") int cityId);
+
+    @GET("class = [categoria_merceologica] limit 100")
     Call<APIResponse> getCategories();
+
+    @GET("class = [comune] limit 100 offset {offset}")
+    Call<APIResponse> getCities(@Path("offset") int offset);
 }

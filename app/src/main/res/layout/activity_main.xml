@@ -13,19 +13,27 @@
             android:layout_height="match_parent">
             <include
                 layout="@layout/toolbar" />
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/main_recycler_view"
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/main_recycler_view_refresh"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/toolbar"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                android:layout_below="@id/toolbar">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/main_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
         </RelativeLayout>
 
+        <!--
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/activity_main_navigation_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             app:menu="@menu/menu_main" />
+        -->
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

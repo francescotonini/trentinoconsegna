@@ -6,4 +6,11 @@
     android:layout_height="?attr/actionBarSize"
     android:layout_width="match_parent"
     android:fitsSystemWindows="true"
-    app:theme="@style/app_theme_toolbar" />
+    app:theme="@style/app_theme_toolbar">
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/activity_main_cities"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:popupBackground="@android:color/white" />
+</androidx.appcompat.widget.Toolbar>

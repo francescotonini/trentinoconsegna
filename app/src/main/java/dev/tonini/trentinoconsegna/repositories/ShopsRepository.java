@@ -53,10 +53,11 @@ public class ShopsRepository extends BaseRepository {
                     newShop.setEmail(data.getEmail());
                     newShop.setWhatsappNumber(data.getWhatsapp());
                     newShop.setFacebookUrl(data.getPaginaFacebook());
+                    newShop.setUrl(data.getSitoWeb());
                     newShop.setPhoneNumber(data.getTelefono());
 
                     // TODO: Fix this to avoid common parse exceptions
-                    newShop.setDeliversEverywhere(data.getConsegnaTuttoTrentino().get(0) != "No");
+                    // newShop.setDeliversEverywhere(data.getConsegnaTuttoTrentino().get(0) != "No");
 
                     // Cities
                     List<String> cities = new ArrayList<>();
@@ -64,6 +65,17 @@ public class ShopsRepository extends BaseRepository {
                         cities.add(city.getName().getItaIT());
                     }
                     newShop.setDeliveryCities(cities);
+
+                    // Payments
+                    List<String> payments = new ArrayList<>();
+                    for (String payment: data.getPagamento()) {
+                        if (payment.length() == 0) {
+                            continue;
+                        }
+
+                        payments.add(payment);
+                    }
+                    newShop.setPaymentMethods(payments);
 
                     result.add(newShop);
                 }

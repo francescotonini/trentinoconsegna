@@ -23,55 +23,195 @@
                 android:layout_marginTop="@dimen/spacing_eight"
                 android:layout_marginLeft="@dimen/spacing_sixteen"
                 android:layout_marginRight="@dimen/spacing_sixteen"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_weight="1">
 
-                <TextView
-                    android:id="@+id/activity_shop_details_category"
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAllCaps="true"
-                    style="@style/secondary_text_view"  />
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/activity_shop_details_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_eight"
-                    android:textStyle="bold"
-                    style="@style/header_text_view" />
-
-                <!-- Delivery cities -->
-                <LinearLayout
-                    android:id="@+id/activity_shop_cities_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_four"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/pin" />
-
-                    <TextView
-                        android:id="@+id/activity_shop_details_cities"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/spacing_eight"
-                        style="@style/secondary_text_view"  />
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                
+                        <TextView
+                            android:id="@+id/activity_shop_details_category"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAllCaps="true"
+                            style="@style/secondary_text_view"  />
 
-                <TextView
-                    android:id="@+id/activity_shop_details_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_sixteen"
-                    style="@style/primary_text_view" />
+                        <TextView
+                            android:id="@+id/activity_shop_details_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_four"
+                            android:textStyle="bold"
+                            style="@style/header_text_view" />
 
+                        <!-- Delivery cities -->
+                        <LinearLayout
+                            android:id="@+id/activity_shop_cities_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_eight"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/pin" />
+
+                            <TextView
+                                android:id="@+id/activity_shop_details_cities"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/spacing_eight"
+                                style="@style/secondary_text_view"  />
+                        </LinearLayout>
+
+                        <!-- Phone -->
+                        <LinearLayout
+                            android:id="@+id/activity_shop_phone_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_eight"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/phone" />
+
+                            <TextView
+                                android:id="@+id/activity_shop_details_phone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/spacing_eight"
+                                style="@style/secondary_text_view"  />
+                        </LinearLayout>
+
+                        <!-- WA -->
+                        <LinearLayout
+                            android:id="@+id/activity_shop_wa_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_eight"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/wa" />
+
+                            <TextView
+                                android:id="@+id/activity_shop_details_wa"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/spacing_eight"
+                                style="@style/secondary_text_view"  />
+                        </LinearLayout>
+
+                        <!-- FB -->
+                        <LinearLayout
+                            android:id="@+id/activity_shop_fb_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_eight"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/fb" />
+
+                            <TextView
+                                android:id="@+id/activity_shop_details_fb"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/spacing_eight"
+                                style="@style/secondary_text_view"  />
+                        </LinearLayout>
+
+                        <!-- Email -->
+                        <LinearLayout
+                            android:id="@+id/activity_shop_payment_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_eight"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/euro" />
+
+                            <TextView
+                                android:id="@+id/activity_shop_details_payment"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/spacing_eight"
+                                style="@style/secondary_text_view"  />
+                        </LinearLayout>
+
+                        <!-- Email -->
+                        <LinearLayout
+                            android:id="@+id/activity_shop_email_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_eight"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/email" />
+
+                            <TextView
+                                android:id="@+id/activity_shop_details_email"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/spacing_eight"
+                                style="@style/secondary_text_view"  />
+                        </LinearLayout>
+
+                        <!-- Web -->
+                        <LinearLayout
+                            android:id="@+id/activity_shop_web_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_eight"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/web" />
+
+                            <TextView
+                                android:id="@+id/activity_shop_details_web"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/spacing_eight"
+                                style="@style/secondary_text_view"  />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/activity_shop_details_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_sixteen"
+                            style="@style/primary_text_view" />
+
+                    </LinearLayout>
+                </ScrollView>
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>

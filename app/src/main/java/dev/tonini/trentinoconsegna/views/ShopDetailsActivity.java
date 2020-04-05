@@ -46,21 +46,79 @@ public class ShopDetailsActivity extends BaseActivity implements OnMapReadyCallb
 
         binding.activityShopDetailsCategory.setText(shop.getCategory());
         binding.activityShopDetailsName.setText(shop.getName());
-        binding.activityShopDetailsDescription.setText(shop.getDescription());
+
         ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.activity_shop_details_map))
             .getMapAsync(this);
 
+        // Description
+        if (shop.getDeliveryNotes() != null) {
+            binding.activityShopDetailsDescription.setText(shop.getDescription() + "\n" + shop.getDeliveryNotes());
+        } else {
+            binding.activityShopDetailsDescription.setText(shop.getDescription());
+        }
+
+        // Delivery cities
         String cities = "";
         if (shop.isDeliversEverywhere()) {
             cities = "Tutto il Trentino";
         } else if (shop.getDeliveryCities() != null && shop.getDeliveryCities().size() > 0) {
             for (String city: shop.getDeliveryCities()) {
-                cities += city + " ";
+                cities += city + ", ";
             }
+
+            cities = cities.replaceAll(", $", "");
         } else {
             binding.activityShopCitiesLayout.setVisibility(View.GONE);
         }
         binding.activityShopDetailsCities.setText(cities);
+
+        // Phone number
+        if (shop.getPhoneNumber() != null) {
+            binding.activityShopDetailsPhone.setText(shop.getPhoneNumber());
+        } else {
+            binding.activityShopPhoneLayout.setVisibility(View.GONE);
+        }
+
+        // WA
+        if (shop.getWhatsappNumber() != null) {
+            binding.activityShopDetailsWa.setText(shop.getWhatsappNumber());
+        } else {
+            binding.activityShopWaLayout.setVisibility(View.GONE);
+        }
+
+        // FB
+        if (shop.getFacebookUrl() != null) {
+            binding.activityShopDetailsFb.setText(shop.getFacebookUrl());
+        } else {
+            binding.activityShopFbLayout.setVisibility(View.GONE);
+        }
+
+        // Euro
+        String payments = "";
+        if (shop.getPaymentMethods() != null && shop.getPaymentMethods().size() > 0) {
+            for (String payment: shop.getPaymentMethods()) {
+                payments += payment + ", ";
+            }
+
+            payments = payments.replaceAll(", $", "");
+        } else {
+            binding.activityShopPaymentLayout.setVisibility(View.GONE);
+        }
+        binding.activityShopDetailsPayment.setText(payments);
+
+        // Email
+        if (shop.getEmail() != null) {
+            binding.activityShopDetailsEmail.setText(shop.getEmail());
+        } else {
+            binding.activityShopEmailLayout.setVisibility(View.GONE);
+        }
+
+        // Web
+        if (shop.getUrl() != null) {
+            binding.activityShopDetailsWeb.setText(shop.getUrl());
+        } else {
+            binding.activityShopWebLayout.setVisibility(View.GONE);
+        }
     }
 
     @Override

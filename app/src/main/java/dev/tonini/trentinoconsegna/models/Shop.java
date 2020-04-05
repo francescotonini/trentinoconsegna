@@ -75,20 +75,20 @@ public class Shop {
         this.facebookUrl = facebookUrl;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public List<String> getDeliveryCities() {
         return deliveryCities;
     }
 
     public void setDeliveryCities(List<String> deliveryCities) {
         this.deliveryCities = deliveryCities;
-    }
-
-    public List<String> getComunitaConsegna() {
-        return comunitaConsegna;
-    }
-
-    public void setComunitaConsegna(List<String> comunitaConsegna) {
-        this.comunitaConsegna = comunitaConsegna;
     }
 
     public boolean isDeliversEverywhere() {
@@ -108,7 +108,25 @@ public class Shop {
     private String email;
     private String whatsappNumber;
     private String facebookUrl;
+    private String url;
     private List<String> deliveryCities;
-    private List<String> comunitaConsegna;
+    private String deliveryNotes;
+    private List<String> paymentMethods;
     private boolean deliversEverywhere;
+
+    public String getDeliveryNotes() {
+        return deliveryNotes;
+    }
+
+    public void setDeliveryNotes(String deliveryNotes) {
+        this.deliveryNotes = deliveryNotes;
+    }
+
+    public List<String> getPaymentMethods() {
+        return paymentMethods;
+    }
+
+    public void setPaymentMethods(List<String> paymentMethods) {
+        this.paymentMethods = paymentMethods;
+    }
 }

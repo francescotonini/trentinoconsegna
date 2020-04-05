@@ -1,19 +1,17 @@
 package dev.tonini.trentinoconsegna.repositories;
 
-import android.annotation.SuppressLint;
 import android.os.Build;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import dev.tonini.trentinoconsegna.AppExecutors;
 import dev.tonini.trentinoconsegna.api.models.APIResponse;
 import dev.tonini.trentinoconsegna.api.ConsegnoInTrentinoAPI;
+import dev.tonini.trentinoconsegna.api.models.ComuniConsegna;
 import dev.tonini.trentinoconsegna.api.models.ItaIT;
 import dev.tonini.trentinoconsegna.api.models.SearchHit;
 import dev.tonini.trentinoconsegna.models.Category;
@@ -52,14 +50,20 @@ public class ShopsRepository extends BaseRepository {
                     newShop.setLat(data.getGeo().getLatitude());
                     newShop.setLon(data.getGeo().getLongitude());
                     newShop.setCategory(data.getCategoriaMerceologica().get(0).getName().getItaIT());
-
-                    // Fix this to avoid common parse exceptions
-                    newShop.setDeliversEverywhere(data.getConsegnaTuttoTrentino().get(0) != "No");
-
                     newShop.setEmail(data.getEmail());
                     newShop.setWhatsappNumber(data.getWhatsapp());
                     newShop.setFacebookUrl(data.getPaginaFacebook());
                     newShop.setPhoneNumber(data.getTelefono());
+
+                    // TODO: Fix this to avoid common parse exceptions
+                    newShop.setDeliversEverywhere(data.getConsegnaTuttoTrentino().get(0) != "No");
+
+                    // Cities
+                    List<String> cities = new ArrayList<>();
+                    for (ComuniConsegna city: data.getComuniConsegna()) {
+                        cities.add(city.getName().getItaIT());
+                    }
+                    newShop.setDeliveryCities(cities);
 
                     result.add(newShop);
                 }

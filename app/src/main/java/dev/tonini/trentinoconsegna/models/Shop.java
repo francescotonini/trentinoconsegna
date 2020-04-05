@@ -75,12 +75,12 @@ public class Shop {
         this.facebookUrl = facebookUrl;
     }
 
-    public List<String> getComuniConsegna() {
-        return comuniConsegna;
+    public List<String> getDeliveryCities() {
+        return deliveryCities;
     }
 
-    public void setComuniConsegna(List<String> comuniConsegna) {
-        this.comuniConsegna = comuniConsegna;
+    public void setDeliveryCities(List<String> deliveryCities) {
+        this.deliveryCities = deliveryCities;
     }
 
     public List<String> getComunitaConsegna() {
@@ -108,7 +108,7 @@ public class Shop {
     private String email;
     private String whatsappNumber;
     private String facebookUrl;
-    private List<String> comuniConsegna;
+    private List<String> deliveryCities;
     private List<String> comunitaConsegna;
     private boolean deliversEverywhere;
 }

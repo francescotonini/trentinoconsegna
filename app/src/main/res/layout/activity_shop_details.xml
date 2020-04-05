@@ -37,9 +37,33 @@
                     android:id="@+id/activity_shop_details_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_four"
+                    android:layout_marginTop="@dimen/spacing_eight"
                     android:textStyle="bold"
                     style="@style/header_text_view" />
+
+                <!-- Delivery cities -->
+                <LinearLayout
+                    android:id="@+id/activity_shop_cities_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_four"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/pin" />
+
+                    <TextView
+                        android:id="@+id/activity_shop_details_cities"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/spacing_eight"
+                        style="@style/secondary_text_view"  />
+                </LinearLayout>
+
+                
 
                 <TextView
                     android:id="@+id/activity_shop_details_description"

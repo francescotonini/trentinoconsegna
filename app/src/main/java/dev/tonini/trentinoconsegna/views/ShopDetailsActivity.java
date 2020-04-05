@@ -2,6 +2,7 @@ package dev.tonini.trentinoconsegna.views;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
@@ -48,6 +49,18 @@ public class ShopDetailsActivity extends BaseActivity implements OnMapReadyCallb
         binding.activityShopDetailsDescription.setText(shop.getDescription());
         ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.activity_shop_details_map))
             .getMapAsync(this);
+
+        String cities = "";
+        if (shop.isDeliversEverywhere()) {
+            cities = "Tutto il Trentino";
+        } else if (shop.getDeliveryCities() != null && shop.getDeliveryCities().size() > 0) {
+            for (String city: shop.getDeliveryCities()) {
+                cities += city + " ";
+            }
+        } else {
+            binding.activityShopCitiesLayout.setVisibility(View.GONE);
+        }
+        binding.activityShopDetailsCities.setText(cities);
     }
 
     @Override

@@ -5,7 +5,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/spacing_sixtyfour">
+        android:layout_height="@dimen/spacing_sixtyfour"
+        android:background="?android:attr/selectableItemBackground">
         <TextView
             android:id="@+id/shop_item_category_text"
             android:layout_width="match_parent"

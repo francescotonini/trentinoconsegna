@@ -118,7 +118,7 @@ public class MainActivity extends BaseActivity implements ShopsAdapter.OnItemCli
                 cities.stream().map(v -> v.getName()).collect(Collectors.toList())
             );
 
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            adapter.setDropDownViewResource(R.layout.spinner_menu_item);
 
             AppCompatSpinner spinner = findViewById(R.id.activity_main_cities);
             spinner.setOnItemSelectedListener(this);

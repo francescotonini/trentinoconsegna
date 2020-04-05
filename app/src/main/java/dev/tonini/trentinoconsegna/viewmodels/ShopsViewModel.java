@@ -40,19 +40,7 @@ public class ShopsViewModel extends BaseViewModel {
 
     public LiveData<List<City>> getCities() {
         if (!this.cities.hasActiveObservers()) {
-            this.cities.addSource(this.shopsRepository.getCities(), result -> {
-                result.sort((o1, o2) -> {
-                    if (o1.getId() == 0) {
-                        return -1;
-                    } else if (o2.getId() == 0) {
-                        return 1;
-                    }
-
-                    return o1.getName().compareTo(o2.getName());
-                });
-
-                this.cities.setValue(result);
-            });
+            this.cities.addSource(this.shopsRepository.getCities(), result -> this.cities.setValue(result));
         }
 
         return this.cities;

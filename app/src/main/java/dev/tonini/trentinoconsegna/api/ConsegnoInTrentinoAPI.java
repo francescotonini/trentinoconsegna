@@ -6,7 +6,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface ConsegnoInTrentinoAPI {
-    @GET("class = [esercizio_commerciale] limit 100 offset {offset}")
+    @GET("class = [esercizio_commerciale] limit 100 offset {offset} sort [ insegna => asc ]")
     Call<APIResponse> getShops(@Path("offset") int offset);
 
     @GET("comuni_consegna.id = [ {id} ] limit 30")
@@ -15,6 +15,6 @@ public interface ConsegnoInTrentinoAPI {
     @GET("class = [categoria_merceologica] limit 100")
     Call<APIResponse> getCategories();
 
-    @GET("class = [comune] limit 100 offset {offset}")
+    @GET("class = [comune] limit 100 offset {offset} sort [ name => asc ]")
     Call<APIResponse> getCities(@Path("offset") int offset);
 }

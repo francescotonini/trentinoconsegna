@@ -12,5 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
-        android:popupBackground="@android:color/white" />
+        android:backgroundTint="@android:color/white"
+        style="@style/app_theme_spinner" />
 </androidx.appcompat.widget.Toolbar>

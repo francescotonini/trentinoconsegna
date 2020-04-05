@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="app_theme_base" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="app_theme_base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
@@ -14,8 +14,12 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
-    <style name="app_theme_toolbar" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="app_theme_toolbar" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:background">@color/primary</item>
+    </style>
+
+    <style name="app_theme_spinner" parent="Widget.AppCompat.Spinner">
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="header_text_view" parent="android:Widget.TextView">

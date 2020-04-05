@@ -21,7 +21,7 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
     }
 
     private List<Shop> shops;
-    private OnItemClickListener listener;
+    private final OnItemClickListener listener;
 
     public ShopsAdapter(OnItemClickListener listener) {
         this.shops = new ArrayList<>();

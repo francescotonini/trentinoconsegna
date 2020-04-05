@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Trentino consegna</string>
-    <string name="action_settings">Settings</string>
+    <string name="ok">Ok</string>
+
+    <string name="error_title">Ops!</string>
+    <string name="error_description">Si è verificato un errore. Riprova più tardi. Se il problema persiste contatta lo sviluppatore</string>
 </resources>

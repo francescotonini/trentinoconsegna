@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.util.List;
 
+import dev.tonini.trentinoconsegna.helpers.SingleLiveEvent;
 import dev.tonini.trentinoconsegna.models.Category;
 import dev.tonini.trentinoconsegna.models.City;
 import dev.tonini.trentinoconsegna.models.Shop;
@@ -26,6 +27,10 @@ public class ShopsViewModel extends BaseViewModel {
         this.shopsRepository = shopsRepository;
         this.shops = new MediatorLiveData<>();
         this.cities = new MediatorLiveData<>();
+    }
+
+    public SingleLiveEvent<Void> getErrors() {
+        return this.shopsRepository.getErrors();
     }
 
     public LiveData<List<Shop>> getShops() {

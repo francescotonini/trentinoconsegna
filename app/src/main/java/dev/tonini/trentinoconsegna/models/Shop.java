@@ -3,6 +3,21 @@ package dev.tonini.trentinoconsegna.models;
 import java.util.List;
 
 public class Shop {
+    private String name;
+    private String description;
+    private double lat;
+    private double lon;
+    private String category;
+    private String phoneNumber;
+    private String email;
+    private String whatsappNumber;
+    private String facebookUrl;
+    private String url;
+    private List<String> deliveryCities;
+    private String deliveryNotes;
+    private List<String> paymentMethods;
+    private boolean deliversEverywhere;
+
     public String getName() {
         return name;
     }
@@ -98,21 +113,6 @@ public class Shop {
     public void setDeliversEverywhere(boolean deliversEverywhere) {
         this.deliversEverywhere = deliversEverywhere;
     }
-
-    private String name;
-    private String description;
-    private double lat;
-    private double lon;
-    private String category;
-    private String phoneNumber;
-    private String email;
-    private String whatsappNumber;
-    private String facebookUrl;
-    private String url;
-    private List<String> deliveryCities;
-    private String deliveryNotes;
-    private List<String> paymentMethods;
-    private boolean deliversEverywhere;
 
     public String getDeliveryNotes() {
         return deliveryNotes;

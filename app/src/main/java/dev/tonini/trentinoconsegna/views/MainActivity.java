@@ -32,6 +32,7 @@ import dev.tonini.trentinoconsegna.R;
 import dev.tonini.trentinoconsegna.TrentinoConsegnaApp;
 import dev.tonini.trentinoconsegna.adapters.ShopsAdapter;
 import dev.tonini.trentinoconsegna.databinding.ActivityMainBinding;
+import dev.tonini.trentinoconsegna.helpers.DialogHelper;
 import dev.tonini.trentinoconsegna.helpers.SimpleDividerItemDecoration;
 import dev.tonini.trentinoconsegna.models.Category;
 import dev.tonini.trentinoconsegna.models.City;
@@ -90,7 +91,11 @@ public class MainActivity extends BaseActivity implements ShopsAdapter.OnItemCli
         binding.mainRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(
                 this,
                 getResources().getColor(R.color.divider),
-                2));
+                1));
+
+        getViewModel().getErrors().observe(this, (error) -> {
+            DialogHelper.show(this, R.string.error_title, R.string.error_description, R.string.ok);
+        });
 
         getViewModel().getShops().observe(this, (shops) -> {
             binding.mainRecyclerViewRefresh.setRefreshing(false);

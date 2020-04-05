@@ -51,8 +51,7 @@ public class ShopsRepository extends BaseRepository {
             @Override
             public void onResponse(Call<APIResponse> call, Response<APIResponse> response) {
                 if (!response.isSuccessful()) {
-                    // Stop here for now
-                    // TODO: add error alerts
+                    fireError();
 
                     return;
                 }
@@ -76,8 +75,11 @@ public class ShopsRepository extends BaseRepository {
                     newShop.setUrl(data.getSitoWeb());
                     newShop.setPhoneNumber(data.getTelefono());
 
-                    // TODO: Fix this to avoid common parse exceptions
-                    // newShop.setDeliversEverywhere(data.getConsegnaTuttoTrentino().get(0) != "No");
+                    try {
+                        newShop.setDeliversEverywhere(!data.getConsegnaTuttoTrentino().get(0).equals("No"));
+                    } catch (Exception ex) {
+                        newShop.setDeliversEverywhere(false);
+                    }
 
                     // Cities
                     List<String> cities = new ArrayList<>();
@@ -118,7 +120,7 @@ public class ShopsRepository extends BaseRepository {
 
             @Override
             public void onFailure(Call<APIResponse> call, Throwable t) {
-                // TODO: add error alerts
+                fireError();
             }
         }));
 
@@ -129,7 +131,11 @@ public class ShopsRepository extends BaseRepository {
         getAppExecutors().networkIO().execute(() -> getApi().getCategories().enqueue(new Callback<APIResponse>() {
             @Override
             public void onResponse(Call<APIResponse> call, Response<APIResponse> response) {
-                // TODO: error management
+                if (!response.isSuccessful()) {
+                    fireError();
+
+                    return;
+                }
 
                 // API models to Shop conversion
                 List<Category> result = new ArrayList<>();
@@ -163,8 +169,7 @@ public class ShopsRepository extends BaseRepository {
             @Override
             public void onResponse(Call<APIResponse> call, Response<APIResponse> response) {
                 if (!response.isSuccessful()) {
-                    // Stop here for now
-                    // TODO: add error alerts
+                    fireError();
 
                     return;
                 }
@@ -195,7 +200,7 @@ public class ShopsRepository extends BaseRepository {
 
             @Override
             public void onFailure(Call<APIResponse> call, Throwable t) {
-                // TODO: add error alerts
+                fireError();
             }
         }));
 
@@ -207,8 +212,7 @@ public class ShopsRepository extends BaseRepository {
             @Override
             public void onResponse(Call<APIResponse> call, Response<APIResponse> response) {
                 if (!response.isSuccessful()) {
-                    // Stop here for now
-                    // TODO: add error alerts
+                    fireError();
 
                     return;
                 }
@@ -232,8 +236,11 @@ public class ShopsRepository extends BaseRepository {
                     newShop.setUrl(data.getSitoWeb());
                     newShop.setPhoneNumber(data.getTelefono());
 
-                    // TODO: Fix this to avoid common parse exceptions
-                    // newShop.setDeliversEverywhere(data.getConsegnaTuttoTrentino().get(0) != "No");
+                    try {
+                        newShop.setDeliversEverywhere(!data.getConsegnaTuttoTrentino().get(0).equals("No"));
+                    } catch (Exception ex) {
+                        newShop.setDeliversEverywhere(false);
+                    }
 
                     // Cities
                     List<String> cities = new ArrayList<>();
@@ -274,7 +281,7 @@ public class ShopsRepository extends BaseRepository {
 
             @Override
             public void onFailure(Call<APIResponse> call, Throwable t) {
-                // TODO: add error alerts
+                fireError();
             }
         }));
     }

@@ -44,11 +44,15 @@ public class ShopDetailsActivity extends BaseActivity implements OnMapReadyCallb
 
         shop = (new Gson()).fromJson(getIntent().getStringExtra("shop"), Shop.class);
 
-        binding.activityShopDetailsCategory.setText(shop.getCategory());
-        binding.activityShopDetailsName.setText(shop.getName());
+        // Go back button
+        binding.activityShopExit.setOnClickListener(click -> onBackPressed());
 
         ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.activity_shop_details_map))
             .getMapAsync(this);
+
+        // Name and category
+        binding.activityShopDetailsCategory.setText(shop.getCategory());
+        binding.activityShopDetailsName.setText(shop.getName());
 
         // Description
         if (shop.getDeliveryNotes() != null) {
